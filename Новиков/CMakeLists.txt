@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 2.8)
+set(target postfix_test)
 
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin)
+#file(GLOB hdrs "*.h*" "../base/*.h" "../gtest/*.h")
+file(GLOB hdrs "*.h*")
+file(GLOB srcs "*.cpp" "../base/postfix.cpp")
 
-include_directories(base gtest)
+#include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty")
 
-# BUILD
-add_subdirectory(base)
-add_subdirectory(base_test)
-add_subdirectory(gtest)
+add_executable(${target} ${srcs} ${hdrs})
+target_link_libraries(${target} gtest)

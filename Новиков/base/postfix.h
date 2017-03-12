@@ -1,4 +1,5 @@
-﻿#ifndef __POSTFIX_H__
+﻿//-
+#ifndef __POSTFIX_H__
 #define __POSTFIX_H__
 
 #include <string>
@@ -8,17 +9,25 @@ using namespace std;
 
 class TPostfix
 {
-  string infix;
-  string postfix;
+	string infix; //обычная запись
+	string postfix; //результат преобразований
 public:
-  TPostfix()
-  {
-    infix = "a + b";
-  }
-  string GetInfix() { return infix; }
-  string GetPostfix() { return postfix; }
-  string ToPostfix();
-  double Calculate(); // Ввод переменных, вычисление по постфиксной форме
+	TPostfix(string val) // конструктор
+	{
+		infix = val;
+	}
+
+	int Priority(char val)// функция преирететов
+	{
+		if ((val == '*') || (val == '/')) return 2;
+		if ((val == '+') || (val == '-')) return 1;
+		return -7;
+	}
+	string GetInfix() { return infix; }
+	string GetPostfix() { return postfix; }
+	
+	string ToPostfix();// перевод в постфикс
+	double Calculate(); // вычислить переведенное выражение
 };
 
 #endif
